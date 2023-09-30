@@ -43,13 +43,13 @@ async def lanzar_dado(ctx: SlashContext):
         numero_resultado = int(ruta_seleccionada.split("/")[-1].split(".")[0])
 
         # Enviar el mensaje con la imagen giratoria y una descripción al mismo canal
-        mensaje_giratorio = await ctx.send(content="Lanzando el dado...", file=discord.File(ruta_dado_giratorio))
+        #mensaje_giratorio = await ctx.send(content="Lanzando el dado...", file=discord.File(ruta_dado_giratorio))
 
         # Esperar un tiempo para dar la apariencia de que el dado está girando
         await asyncio.sleep(2)
 
         # Eliminar la imagen giratoria
-        await mensaje_giratorio.delete()
+        #await mensaje_giratorio.delete()
 
         # Obtener la imagen seleccionada y enviarla en un mensaje Embed con descripción
         imagen = Image.open(ruta_seleccionada)
@@ -64,7 +64,7 @@ async def lanzar_dado(ctx: SlashContext):
                              icon_url=ctx.author.avatar_url)
 
             # Enviar el mensaje Embed con la imagen al mismo canal
-            await ctx.channel.send(embed=embed, file=discord.File(fp=image_binary, filename='dado.png'))
+            await ctx.send(embed=embed, file=discord.File(fp=image_binary, filename='dado.png'))
 
     except Exception as e:
         print(f"Error al procesar la imagen: {e}")
